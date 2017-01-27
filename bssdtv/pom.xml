@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>bssdtv</artifactId>
+	<name>bssdtv</name>
+	<description>bssdtv</description>
+	<packaging>war</packaging>
+
+	<parent>
+		<groupId>bss.tv</groupId>
+		<artifactId>bss</artifactId>
+		<version>2016.12.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<properties>
+<!-- 		<version.spring-data-jpa>1.10.2.RELEASE</version.spring-data-jpa>
+		<version.spring>4.3.0.RELEASE</version.spring> -->
+		
+		<version.spring>1.2.5.RELEASE</version.spring>
+		<bss.build.warFileName>bssdtv</bss.build.warFileName>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>bss.tv</groupId>
+			<artifactId>bsstestbase</artifactId>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly.swarm</groupId>
+			<artifactId>spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly.swarm</groupId>
+			<artifactId>jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${version.spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${version.spring-data-jpa}</version>
+		</dependency> -->
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${version.spring}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+        
+	</dependencies>
+
+	<build>
+		<plugins>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<warName>${bepweb.build.warFileName}</warName>
+					<finalName>${bepweb.build.warFileName}</finalName>
+					<webResources>
+						<resource>
+							<filtering>true</filtering>
+							<directory>src/main/webapp/WEB-INF/jsp</directory>
+							<targetPath>WEB-INF/jsp</targetPath>
+							<includes>
+								<include>*.jsp</include>
+							</includes>
+						</resource>
+						<!-- <resource>
+							<filtering>true</filtering>
+							<directory>src/main/webapp/WEB-INF/</directory>
+							<targetPath>WEB-INF</targetPath>
+							<includes>
+								<include>*.xml</include>
+							</includes>
+						</resource> -->
+						<!-- <resource>
+							<filtering>true</filtering>
+							<directory>src/main/webapp/resources/stubs/json</directory>
+							<targetPath>resources/stubs/json</targetPath>
+							<includes>
+								<include>*.json</include>
+							</includes>
+						</resource> -->
+					</webResources>
+					         
+   					<archive>
+						<index>true</index>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              				  <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+						<!-- <manifestEntries>
+							<Build-Host>${agent.name}</Build-Host>
+							<Build-User>${user.name}</Build-User>
+							<Build-OS>${os.name}</Build-OS>
+							<Build-Path>${basedir}</Build-Path>
+							<Build-Host-Linux>${env.HOSTNAME}</Build-Host-Linux> 
+							<Build-Host-Windows>${env.COMPUTERNAME}</Build-Host-Windows>
+							<Build-WAR-Name>${bepweb.build.warFileName}</Build-WAR-Name>
+							
+						</manifestEntries> -->
+					</archive> 
+				</configuration>
+			</plugin>
+			
+			
+			<!-- <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin> -->
+			<plugin>
+				<groupId>org.wildfly.swarm</groupId>
+				<artifactId>wildfly-swarm-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>package</id>
+					</execution>
+					<execution>
+						<id>start</id>
+					</execution>
+					<execution>
+						<id>stop</id>
+					</execution>
+				</executions>
+			</plugin>
+			
+			
+			
+		</plugins>
+	</build>
+
+</project>

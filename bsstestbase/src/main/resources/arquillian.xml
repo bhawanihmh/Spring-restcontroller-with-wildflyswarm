@@ -1,0 +1,17 @@
+<arquillian>
+
+  <extension qualifier="webdriver">
+    <property name="browser">phantomjs</property>
+     <!-- <property name="browser">internetExplorer</property>  -->
+    <!--
+    Available options are: opera, chrome, safari, phantomjs, firefox, htmlUnit, internetExplorer
+    
+    <property name="browser">${browser}</property>
+    -->    
+  </extension>
+	<!-- 
+    <extension qualifier="selenium">
+        <property name="browser">*googlechrome</property>
+    </extension>
+    -->
+</arquillian>

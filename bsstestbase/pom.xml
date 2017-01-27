@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>bsstestbase</artifactId>
+	<name>bsstestbase</name>
+	<description>bsstestbase</description>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>bss.tv</groupId>
+		<artifactId>bss</artifactId>
+		<version>2016.12.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<!-- PhantomJS will be our default browser if no profile is specified -->
+		<browser>chrome</browser>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>firefox</id>
+			<properties>
+				<browser>firefox</browser>
+			</properties>
+		</profile>
+		<profile>
+			<id>chrome</id>
+			<properties>
+				<browser>chrome</browser>
+			</properties>
+		</profile>
+
+		<!-- feel free to add any other browser you like -->
+	</profiles>
+
+	<build>
+		<!-- test resource filtering evaluates ${browser} expression in arquillian.xml -->
+		<testResources>
+			<testResource>
+				<directory>src/it/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+		<plugins>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.easytesting</groupId>
+			<artifactId>fest-assert</artifactId>
+			<version>1.4</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+</project>

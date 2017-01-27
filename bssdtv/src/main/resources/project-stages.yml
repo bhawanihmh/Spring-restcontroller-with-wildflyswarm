@@ -1,0 +1,20 @@
+service:
+    user:
+        service-name: "bssdtv"
+swarm:
+    port:
+        offset: 0
+    consul:
+        url: "http://10.131.126.158:8500"
+---
+project:
+    stage: production
+service:
+    user:
+        service-name: "bssdtv"
+swarm:
+    port:
+        offset: 50
+    consul:
+        url: "http://10.131.126.158:8500"
+
