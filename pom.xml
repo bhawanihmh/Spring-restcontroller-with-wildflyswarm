@@ -76,6 +76,7 @@
 		<finalName>${project.artifactId}</finalName>
 
 		<pluginManagement>
+			<!-- Plugin for wildfly swarm -->
 			<plugins>
 				<plugin>
 					<groupId>org.wildfly.swarm</groupId>
